@@ -6,7 +6,6 @@ const urls = [
     "https://www.glamira.africa/",
     "https://www.glamira.africa/fr/",
     "https://www.glamira.africa/pt/",
-    "https://www.glamira.al/",
     "https://www.glamira.at/",
     "https://www.glamira.az/",
     "https://www.glamira.az/en/",
@@ -115,22 +114,15 @@ urls.forEach(url => {
       await browser.close();
   })
 });
-  
-test("simple screenshot comparison test", async ({ page }) => {
-  // navigating to url
-  await page.goto();
-  await page.waitForTimeout(10000)
 
-  // visually comparing two screenshots
-  await expect(page).toHaveScreenshot({
-    fullPage:true , timeout: 30000, maxDiffPixelRatio: 0.2
-  });
-});
-
-
-test("test", async ({ page }) => {
-  test.setTimeout(100000)
-  await page.goto('/diamond-rings/diamond/');
+urls.forEach(url => {
+test("product page : " + url, async ({ playwright }) => {
+  const browser = await playwright.chromium.launch({
+    args: ['--remote-debugging-port=9222'],
+  })
+const context = await browser.newContext();
+const page = await context.newPage()
+  await page.goto(url+'catalog/product/view/id/98249');
   await page.waitForTimeout(10000)
   // visually comparing two screenshots
   await expect(page).toHaveScreenshot(
@@ -138,8 +130,55 @@ test("test", async ({ page }) => {
       fullPage:true, timeout: 50000 , maxDiffPixelRatio: 0.2
     }
   );
+  await page.close();
+  await context.close();
+  await browser.close();
+})
 });
 
+urls.forEach(url => {
+  test("rings home : " + url, async ({ playwright }) => {
+    const browser = await playwright.chromium.launch({
+      args: ['--remote-debugging-port=9222'],
+    })
+  const context = await browser.newContext();
+  const page = await context.newPage()
+    await page.goto(url+'catalog/category/view/id/27');
+    await page.waitForTimeout(10000)
+    // visually comparing two screenshots
+    await expect(page).toHaveScreenshot(
+      {
+        fullPage:true, timeout: 500000 , maxDiffPixelRatio: 0.2
+      }
+    );
+    await page.close();
+    await context.close();
+    await browser.close();
+  })
+  });
+
+//catalog/category/view/id/27?stone1=ruby
+//filter stone
+urls.forEach(url => {
+  test("filter stone : " + url, async ({ playwright }) => {
+    const browser = await playwright.chromium.launch({
+      args: ['--remote-debugging-port=9222'],
+    })
+  const context = await browser.newContext();
+  const page = await context.newPage()
+    await page.goto(url+'catalog/category/view/id/27?stone1=ruby');
+    await page.waitForTimeout(10000)
+    // visually comparing two screenshots
+    await expect(page).toHaveScreenshot(
+      {
+        fullPage:true, timeout: 500000 , maxDiffPixelRatio: 0.2
+      }
+    );
+    await page.close();
+    await context.close();
+    await browser.close();
+  })
+  });
 test("carat", async ({ page }) => {
   test.setTimeout(100000)
   await page.goto('/diamond-rings/carat-0.10-0.25/');
