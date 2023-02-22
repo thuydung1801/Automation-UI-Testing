@@ -49,8 +49,6 @@ const urls = [
     "https://www.glamira.com.tr/",
     "https://www.glamira.com.tw/",
     "https://www.glamira.com.tw/en/",
-    "https://www.glamira.com.ua/",
-    "https://www.glamira.com.ua/ru/",
 "https://www.glamira.com.uy/",
 "https://www.glamira.com.ve/",
 "https://www.glamira.com/",
@@ -86,7 +84,6 @@ const urls = [
 "https://www.glamira.pt/",
 "https://www.glamira.ro/",
 "https://www.glamira.rs/",
-"https://www.glamira.ru/",
 "https://www.glamira.se/",
 "https://www.glamira.sg/",
 "https://www.glamira.sg/cn/",
@@ -179,17 +176,27 @@ urls.forEach(url => {
     await browser.close();
   })
   });
-test("carat", async ({ page }) => {
-  test.setTimeout(100000)
-  await page.goto('/diamond-rings/carat-0.10-0.25/');
-  await page.waitForTimeout(10000)
-  // visually comparing two screenshots
-  await expect(page).toHaveScreenshot(
-    {
-      fullPage:true, timeout: 50000 , maxDiffPixelRatio: 0.2
-    }
-  );
-});
+
+  urls.forEach(url => {
+    test("filter carat : " + url, async ({ playwright }) => {
+      const browser = await playwright.chromium.launch({
+        args: ['--remote-debugging-port=9222'],
+      })
+    const context = await browser.newContext();
+    const page = await context.newPage()
+      await page.goto(url+'catalog/category/view/id/27?stone1=ruby');
+      await page.waitForTimeout(10000)
+      // visually comparing two screenshots
+      await expect(page).toHaveScreenshot(
+        {
+          fullPage:true, timeout: 500000 , maxDiffPixelRatio: 0.2
+        }
+      );
+      await page.close();
+      await context.close();
+      await browser.close();
+    })
+    });
 
 test("baguette-cut", async ({ page }) => {
   test.setTimeout(100000)
@@ -206,7 +213,7 @@ test("baguette-cut", async ({ page }) => {
 
 test("color stone", async ({ page }) => {
   test.setTimeout(100000)
-  await page.goto('/diamond-rings/585-white-gold/');
+  await page.goto('/diamond-rings/585-white-gold/', {w});
   await page.waitForTimeout(10000)
   // visually comparing two screenshots
   await expect(page).toHaveScreenshot(
