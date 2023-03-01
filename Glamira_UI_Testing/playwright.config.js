@@ -1,4 +1,5 @@
 // @ts-check
+// @ts-ignore
 const { defineConfig, devices } = require('@playwright/test');
 const baseURL = "https://stage.glamira.co.uk/"
 /**

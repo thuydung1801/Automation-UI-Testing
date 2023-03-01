@@ -205,6 +205,7 @@ urls.forEach(url => {
     const context = await browser.newContext();
     const page = await context.newPage()
     await page.goto(url + 'catalog/category/view/id/27');
+    await page.waitForTimeout(5000)
     await page.evaluate(() => window.scrollTo(0, 900))
     await page.waitForTimeout(5000)
     const language = page.locator(
@@ -317,16 +318,16 @@ urls.forEach(url => {
   })
 });
 
-test("metal", async ({ page }) => {
-  test.setTimeout(100000)
-  await page.goto('/diamond-rings/750-white-gold/');
-  await page.waitForTimeout(10000)
-  // visually comparing two screenshots
-  await expect(page).toHaveScreenshot(
-    {
-      fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
-    }
-  );
+test('network throttling', async ({ page }) => {
+  await page.goto('https://app.checklyhq.com/', { waitUntil: 'networkidle' });
+  const client = await page.context().newCDPSession(page);
+  await client.send('Network.enable');
+  await client.send('Network.emulateNetworkConditions', {
+    offline: false,
+    downloadThroughput: (0.4 * 1024 * 1024) / 8,
+    uploadThroughput: (0.4 * 1024 * 1024) / 8,
+    latency: 2000,
+  });
 });
 
 test("price", async ({ page }) => {
