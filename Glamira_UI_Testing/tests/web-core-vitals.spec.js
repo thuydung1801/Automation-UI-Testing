@@ -1,6 +1,7 @@
 import { test } from "@playwright/test";
 import { playAudit } from "playwright-lighthouse";
 
+
 const urls = [
     "https://int.glamira.com/",
     "https://www.glamira.ae/",
@@ -92,48 +93,145 @@ const urls = [
     "https://www.glamira.sr/",
     "https://www.glamira.vn/",
     "https://www.ring-paare.de/",
-  ];
+];
+
+const stores = [
+    "int",
+    "ae",
+    "africa",
+    "africa-fr",
+    "africa-pt",
+    "at",
+    "az",
+    "az-en",
+    "be",
+    "be-fr",
+    "bg",
+    "bz",
+    "ca",
+    "ch",
+    "fr",
+    "ch-it",
+    "cl",
+    "cn",
+    "cr",
+    "id",
+    "id-en",
+    "nz",
+    "th",
+    "uk",
+    "za",
+    "ar",
+    "au",
+    "bh",
+    "bo",
+    "br",
+    "co",
+    "do",
+    "ec",
+    "gt",
+    "kw",
+    "mt",
+    "mx",
+    "my",
+    "my-my",
+    "pa",
+    "pe",
+    "ph",
+    "pr",
+    "py",
+    "sv",
+    "tr",
+    "tw",
+    "tw-en",
+    "uy",
+    "ve",
+    "glamira.com",
+    "es",
+    "cz",
+    "de",
+    "dk",
+    "ee",
+    "es",
+    "fi",
+    "fr",
+    "gf",
+    "gr",
+    "gy",
+    "hk",
+    "hk-cn",
+    "hk-en",
+    "hn",
+    "hr",
+    "hu",
+    "ie",
+    "in",
+    "is",
+    "it",
+    "jp",
+    "kr",
+    "lt",
+    "lv",
+    "md",
+    "nl",
+    "no",
+    "pl",
+    "pt",
+    "ro",
+    "se",
+    "sg",
+    "cn",
+    "si",
+    "sk",
+    "sr",
+    "vn",
+    "ring-paare",
+]
+
+
 //test.use({headless: true});
-urls.forEach(url => {
-test('core vitals: '+ url, async ({playwright}) =>{
-    const browser = await playwright.chromium.launch({
-        args: ['--remote-debugging-port=9222'],
-    });
-    const context = await browser.newContext();
-    const page = await context.newPage();
-    await page.goto(url);
-    var file = null;
-    if(url.includes("https://int.")){
-        file = url.replace("https://","").replace(".","").replace("/","").replace("glamira.com","")
-    }else{
-        file = url.replace("https://www.glamira.","").replace(".","-").replace("/","").replace("/","")
-    }
-    console.log(file)
-    await playAudit({
-        thresholds: {
-            performance: 50,
-            accessibility: 50,
-            'best-practices': 50,
-            seo: 50,
-            pwa: 50,
-        },
-        ignoreError: true,
-        page: page,
-        port: 9222,
-        reports:
+urls.forEach((url,index) => {
+
+    test('homepage: ' + url, async ({ playwright }) => {
+
+        const browser = await playwright.chromium.launch({
+            args: ['--remote-debugging-port=9222'],
+        });
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await page.goto(url);
+        for (let i = 0; i <= index; i++) {
+            var file = `${stores[i]}`;
+        }
+        console.log(file)
+        await playAudit({
+            thresholds: {
+                performance: 50,
+                accessibility: 50,
+                'best-practices': 50,
+                seo: 50,
+                pwa: 50,
+            },
+            ignoreError: true,
+            page: page,
+            port: 9222,
+            reports:
             {
                 "formats": {
-                    //html: true,
-                    csv: true, 
+                    html: false,
+                    csv: true,
                     json: false
                 },
-                name: file + "-" + Date.now().toString(),
-                directory: "lighthous-report-desktop"
+                name: ""+file,
+                directory: "lighthous-report-desktop/homepage"
             },
-    });
+        });
 
-    await page.close();
-    await context.close();
-    await browser.close();
-})
+
+
+        await page.close();
+        await context.close();
+        await browser.close();
+    })
+
 });
