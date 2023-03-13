@@ -97,7 +97,7 @@ const existingCsv = [];
 //   "ring-paare",
 // ]
 
-const directoryPath = './lighthous-report-desktop';
+const directoryPath = './home';
 
 //stores.forEach((store) => {
   
@@ -109,7 +109,7 @@ fs.readdir(directoryPath, (err, files) => {
   }
   
   files.forEach((file) => {
-    const outputFilename = `output-${file}`;
+    const outputFilename = `homepage-${file}`;
     //if(file.includes(store)){
     fs.createReadStream(`${directoryPath}/${file}`)
       .on('error', (err) => {

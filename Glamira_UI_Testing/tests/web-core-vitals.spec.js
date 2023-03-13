@@ -190,7 +190,8 @@ const stores = [
 
 
 //test.use({headless: true});
-urls.forEach((url,index) => {
+//home pgae
+urls.forEach((url, index) => {
 
     test('homepage: ' + url, async ({ playwright }) => {
 
@@ -222,8 +223,59 @@ urls.forEach((url,index) => {
                     csv: true,
                     json: false
                 },
-                name: ""+file,
+                name: "" + file,
                 directory: "lighthous-report-desktop/homepage"
+            },
+        });
+
+
+
+        await page.close();
+        await context.close();
+        await browser.close();
+    })
+
+});
+
+//listing page
+urls.forEach((url, index) => {
+
+    test('listing page: ' + url, async ({ playwright }) => {
+
+        const browser = await playwright.chromium.launch({
+            args: ['--remote-debugging-port=9222'],
+        });
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await page.goto(url);
+        await page.hover("xpath=//a[contains(@class,'main menu_node_33366__link')]");
+        await page.waitForSelector("//a[@id='ui-id-3']")
+        await page.click("//a[@id='ui-id-3']")
+        await page.waitForTimeout(10000)
+        for (let i = 0; i <= index; i++) {
+            var file = `${stores[i]}`;
+        }
+        console.log(file)
+        await playAudit({
+            thresholds: {
+                performance: 50,
+                accessibility: 50,
+                'best-practices': 50,
+                seo: 50,
+                pwa: 50,
+            },
+            ignoreError: true,
+            page: page,
+            port: 9222,
+            reports:
+            {
+                "formats": {
+                    html: false,
+                    csv: true,
+                    json: false
+                },
+                name: "" + file,
+                directory: "lighthous-report-desktop/listingpage"
             },
         });
 
