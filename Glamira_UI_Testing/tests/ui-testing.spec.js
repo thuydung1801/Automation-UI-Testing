@@ -1,96 +1,97 @@
 // glamira ui testing
 const { expect, test } = require('@playwright/test');
 const urls = [
-  "https://int.glamira.com/",
-  "https://www.glamira.ae/",
-  "https://www.glamira.africa/",
-  "https://www.glamira.africa/fr/",
-  "https://www.glamira.africa/pt/",
-  "https://www.glamira.at/",
-  "https://www.glamira.az/",
-  "https://www.glamira.az/en/",
-  "https://www.glamira.be/",
-  "https://www.glamira.be/fr/",
-  "https://www.glamira.bg/",
-  "https://www.glamira.bz/",
-  "https://www.glamira.ca/",
-  "https://www.glamira.ch/",
-  "https://www.glamira.ch/fr/",
-  "https://www.glamira.ch/it/",
-  "https://www.glamira.cl/",
-  "https://www.glamira.cn/",
-  "https://www.glamira.co.cr/",
-  "https://www.glamira.co.id/",
-  "https://www.glamira.co.id/en/",
-  "https://www.glamira.co.nz/",
-  "https://www.glamira.co.th/",
-  "https://www.glamira.co.uk/",
-  "https://www.glamira.co.za/",
-  "https://www.glamira.com.ar/",
-  "https://www.glamira.com.au/",
-  "https://www.glamira.com.bh/",
-  "https://www.glamira.com.bo/",
-  "https://www.glamira.com.br/",
-  "https://www.glamira.com.co/",
-  "https://www.glamira.com.do/",
-  "https://www.glamira.com.ec/",
-  "https://www.glamira.com.gt/",
-  "https://www.glamira.com.kw/",
-  "https://www.glamira.com.mt/",
-  "https://www.glamira.com.mx/",
-  "https://www.glamira.com.my/",
-  "https://www.glamira.com.my/my/",
-  "https://www.glamira.com.pa/",
-  "https://www.glamira.com.pe/",
-  "https://www.glamira.com.ph/",
-  "https://www.glamira.com.pr/",
-  "https://www.glamira.com.py/",
-  "https://www.glamira.com.sv/",
-  "https://www.glamira.com.tr/",
-  "https://www.glamira.com.tw/",
-  "https://www.glamira.com.tw/en/",
-  "https://www.glamira.com.uy/",
-  "https://www.glamira.com.ve/",
-  "https://www.glamira.com/",
-  "https://www.glamira.com/es/",
-  "https://www.glamira.cz/",
-  "https://www.glamira.de/",
-  "https://www.glamira.dk/",
-  "https://www.glamira.ee/",
-  "https://www.glamira.es/",
-  "https://www.glamira.fi/",
-  "https://www.glamira.fr/",
-  "https://www.glamira.gf/",
-  "https://www.glamira.gr/",
-  "https://www.glamira.gy/",
-  "https://www.glamira.hk/",
-  "https://www.glamira.hk/cn/",
-  "https://www.glamira.hk/en/",
-  "https://www.glamira.hn/",
-  "https://www.glamira.hr/",
-  "https://www.glamira.hu/",
-  "https://www.glamira.ie/",
-  "https://www.glamira.in/",
-  "https://www.glamira.is/",
-  "https://www.glamira.it/",
-  "https://www.glamira.jp/",
-  "https://www.glamira.kr/",
-  "https://www.glamira.lt/",
-  "https://www.glamira.lv/",
-  "https://www.glamira.md/",
-  "https://www.glamira.nl/",
-  "https://www.glamira.no/",
-  "https://www.glamira.pl/",
-  "https://www.glamira.pt/",
-  "https://www.glamira.ro/",
-  "https://www.glamira.se/",
-  "https://www.glamira.sg/",
-  "https://www.glamira.sg/cn/",
-  "https://www.glamira.si/",
-  "https://www.glamira.sk/",
-  "https://www.glamira.sr/",
-  "https://www.glamira.vn/",
-  "https://www.ring-paare.de/",
+  //"https://int.glamira.com/",
+  //"https://www.glamira.ae/",
+  //"https://www.glamira.africa/",
+  //"https://www.glamira.africa/fr/",
+  //"https://www.glamira.africa/pt/",
+  //"https://www.glamira.at/",
+  //"https://www.glamira.az/",
+  //"https://www.glamira.az/en/",
+  //"https://www.glamira.be/",
+  //"https://www.glamira.be/fr/",
+  //"https://www.glamira.bg/",
+  //"https://www.glamira.bz/",
+  //"https://www.glamira.ca/",
+  // "https://www.glamira.ch/",
+  //  "https://www.glamira.ch/fr/",
+  //"https://www.glamira.ch/it/",
+  //"https://www.glamira.cl/",
+  //"https://www.glamira.cn/",
+  //"https://www.glamira.co.cr/",
+  //"https://www.glamira.co.id/",
+  //"https://www.glamira.co.id/en/",
+  //"https://www.glamira.co.nz/",
+  //"https://www.glamira.co.th/",
+  //"https://www.glamira.co.uk/",
+  //"https://www.glamira.co.za/",
+  //"https://www.glamira.com.ar/",
+  //"https://www.glamira.com.au/",
+  //"https://www.glamira.com.bh/",
+  //"https://www.glamira.com.bo/",
+  //"https://www.glamira.com.br/",
+  //"https://www.glamira.com.co/",
+  //"https://www.glamira.com.do/",
+  //"https://www.glamira.com.ec/",
+  //"https://www.glamira.com.gt/",
+  //"https://www.glamira.com.kw/",
+  //"https://www.glamira.com.mt/",
+  //"https://www.glamira.com.mx/",
+  //"https://www.glamira.com.my/",
+  //"https://www.glamira.com.my/my/",
+  //"https://www.glamira.com.pa/",
+  //"https://www.glamira.com.pe/",
+  //"https://www.glamira.com.ph/",
+  // "https://www.glamira.com.pr/",
+  //"https://www.glamira.com.py/",
+  //"https://www.glamira.com.sv/",
+  //"https://www.glamira.com.tr/",
+  //"https://www.glamira.com.tw/",
+  //"https://www.glamira.com.tw/en/",
+  //"https://www.glamira.com.uy/",
+  //"https://www.glamira.com.ve/",
+  //"https://www.glamira.com/",
+  //"https://www.glamira.com/es/",
+  //"https://www.glamira.cz/",
+  //"https://www.glamira.de/",
+  //"https://www.glamira.dk/",
+  //"https://www.glamira.ee/",
+  //"https://www.glamira.es/",
+  //"https://www.glamira.fi/",
+  //"https://www.glamira.fr/",
+  //"https://www.glamira.gf/",
+  //"https://www.glamira.gr/",
+  //"https://www.glamira.gy/",
+  //"https://www.glamira.hk/",
+  //"https://www.glamira.hk/cn/",
+  //"https://www.glamira.hk/en/",
+  //"https://www.glamira.hn/",
+  //"https://www.glamira.hr/",
+  //"https://www.glamira.hu/",
+  //"https://www.glamira.ie/",
+  //"https://www.glamira.in/",
+  //"https://www.glamira.is/",
+  //"https://www.glamira.it/",
+  //"https://www.glamira.jp/",
+  //"https://www.glamira.kr/",
+  //"https://www.glamira.lt/",
+  //"https://www.glamira.lv/",
+  //"https://www.glamira.md/",
+  //"https://www.glamira.nl/",
+  //"https://www.glamira.no/",
+  //"https://www.glamira.pl/",
+  //"https://www.glamira.pt/",
+  //"https://www.glamira.ro/",
+  //"https://www.glamira.se/",
+  //"https://www.glamira.sg/",
+  //"https://www.glamira.sg/cn/",
+  //"https://www.glamira.si/",
+  //"https://www.glamira.sk/",
+  //"https://www.glamira.sr/",
+  //"https://www.glamira.vn/",
+  // "https://www.ring-paare.de/",
+  "https://stage.glamira.co.uk/"
 ];
 
 urls.forEach(url => {
@@ -117,13 +118,22 @@ urls.forEach(url => {
       args: ['--remote-debugging-port=9222'],
     })
     const context = await browser.newContext();
-    const page = await context.newPage()
+    const page = await context.newPage(
+    
+    );
+
     await page.goto(url + 'catalog/product/view/id/98249');
-    await page.waitForTimeout(10000)
+    await page.waitForTimeout(10000);
+
+    const elementToRemove = await page.$('#product-collection');
+    await page.evaluate(element => element.remove(), elementToRemove);
+
+    await page.waitForTimeout(5000);
     // visually comparing two screenshots
     await expect(page).toHaveScreenshot(
       {
-        fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
+        fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2,
+        //hideElements: ['div#product-collection']
       }
     );
     await page.close();
@@ -245,7 +255,20 @@ urls.forEach(url => {
     const context = await browser.newContext();
     const page = await context.newPage()
     await page.goto(url + 'catalog/category/view/id/27?stone1=ruby');
+    //accept all cookies and geoip
     await page.evaluate(() => window.scrollTo(0, 900))
+    await page.waitForTimeout(5000)
+    const language = page.locator(
+      "#geoip-detect > div.geoip-detect-right > div > div.geoip-wrapper-content > a.btn-stay-here.geoip-close"
+    )
+    if (await language.isVisible()) {
+      await expect(language).toBeVisible()
+      await language.click()
+    }
+    const cookies = page.locator('#html-body > aside > div > div > div > button.amgdprcookie-button.-allow.-save')
+    if (await cookies.isVisible()) {
+      await cookies.click()
+    }
     await page.click("xpath=(//div[contains(@class,'item label filter-shape_diamonds')]/dl/dt/span/a)[1]")
     const stone_shape = "(//div[contains(@class,'item label filter-shape_diamonds')]//dd/ol/li/a/label)[1]"
     await page.waitForSelector(stone_shape)
@@ -272,6 +295,18 @@ urls.forEach(url => {
     const page = await context.newPage()
     await page.goto(url + 'catalog/category/view/id/27?stone1=ruby');
     await page.evaluate(() => window.scrollTo(0, 900))
+    await page.waitForTimeout(5000)
+    const language = page.locator(
+      "#geoip-detect > div.geoip-detect-right > div > div.geoip-wrapper-content > a.btn-stay-here.geoip-close"
+    )
+    if (await language.isVisible()) {
+      await expect(language).toBeVisible()
+      await language.click()
+    }
+    const cookies = page.locator('#html-body > aside > div > div > div > button.amgdprcookie-button.-allow.-save')
+    if (await cookies.isVisible()) {
+      await cookies.click()
+    }
     await page.click("xpath=(//div[contains(@class,'item label filter-colour')]/dl/dt/span/a)[1]")
     const stone_shape = "(//div[contains(@class,'item label filter-colour')]//dd/ol/li/a/label)[1]"
     await page.waitForSelector(stone_shape)
@@ -296,8 +331,23 @@ urls.forEach(url => {
     })
     const context = await browser.newContext();
     const page = await context.newPage()
-    await page.goto(url + 'glamira-initials-ring-a.html?alloy=white-silber&stone1=diamond-Brillant');
+    await page.goto(url);
     await page.waitForTimeout(5000)
+    await page.evaluate(() => window.scrollTo(0, 300))
+    const language = page.locator(
+      "#geoip-detect > div.geoip-detect-right > div > div.geoip-wrapper-content > a.btn-stay-here.geoip-close"
+    )
+    if (await language.isVisible()) {
+      await expect(language).toBeVisible()
+      await language.click()
+    }
+    const cookies = page.locator('#html-body > aside > div > div > div > button.amgdprcookie-button.-allow.-save')
+    if (await cookies.isVisible()) {
+      await cookies.click()
+    }
+    await page.goto(url + 'glamira-initials-ring-a.html?alloy=white-silber&stone1=diamond-Brillant');
+    await page.waitForTimeout(2000);
+
     // visually comparing two screenshots
     await expect(page).toHaveScreenshot(
       {
@@ -318,17 +368,6 @@ urls.forEach(url => {
   })
 });
 
-test('network throttling', async ({ page }) => {
-  await page.goto('https://app.checklyhq.com/', { waitUntil: 'networkidle' });
-  const client = await page.context().newCDPSession(page);
-  await client.send('Network.enable');
-  await client.send('Network.emulateNetworkConditions', {
-    offline: false,
-    downloadThroughput: (0.4 * 1024 * 1024) / 8,
-    uploadThroughput: (0.4 * 1024 * 1024) / 8,
-    latency: 2000,
-  });
-});
 
 test("price", async ({ page }) => {
   test.setTimeout(100000)
@@ -400,9 +439,129 @@ urls.forEach(url => {
     })
     const context = await browser.newContext();
     const page = await context.newPage()
-    await page.goto(url);
-    await page.waitForTimeout(10000)
+    await page.goto(
+      url + "glamira-bracelet-tanel.html?alloy=white_red-375&stone1=diamond-Brillant"
+    )
+    await page.evaluate(() => window.scrollTo(0, 900))
+    await page.waitForTimeout(5000)
+    const language = page.locator(
+      "#geoip-detect > div.geoip-detect-right > div > div.geoip-wrapper-content > a.btn-stay-here.geoip-close"
+    )
+    if (await language.isVisible()) {
+      await expect(language).toBeVisible()
+      await language.click()
+    }
+    const cookies = page.locator('#html-body > aside > div > div > div > button.amgdprcookie-button.-allow.-save')
+    await cookies.click()
+    await page.waitForTimeout(5000)
+
     await page.evaluate(() => window.scrollTo(0, 300))
+    await page.locator("#product-addtocart-button").click()
+    await page.waitForTimeout(1000)
+    await expect(page).toHaveScreenshot(
+      {
+        fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
+      }
+
+    );
+    await page
+      .locator(
+        "a.action.showcart"
+      )
+      .click()
+    await page.waitForTimeout(3000)
+    await expect(page).toHaveScreenshot(
+      {
+        fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
+      }
+
+    );
+    await page
+      .locator(
+        "#html-body > div.modals-wrapper > aside.modal-slide.minicart.modal-sm._inner-scroll._show > div > div div > div.block-content > div.block-footer > div.actions > div.primary > a"
+      )
+      .click()
+    await page.waitForTimeout(10000)
+    await expect(page).toHaveScreenshot(
+      {
+        fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
+      }
+
+    );
+    const checkout = page.locator(
+      "#maincontent > div.columns > div > div.cart-container > div > ul > li > button"
+    )
+    await expect(checkout).toBeVisible()
+    await checkout.click()
+
+    await page.waitForTimeout(10000)
+    await expect(page).toHaveScreenshot(
+      {
+        fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
+      }
+
+    );
+    const username = page.locator("#checkout-login-email")
+    await expect(username).toBeVisible()
+    await username.fill("linh@onlinebizsoft.com")
+    await page.locator("#checkout-login-password").fill("Linh@123")
+    await page
+      .locator(
+        "#form-login > fieldset > div.actions-toolbar > div.primary > button"
+      )
+      .click()
+
+    await page.waitForTimeout(15000)
+    await expect(page).toHaveScreenshot(
+      {
+        fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
+      }
+
+    );
+    const shipment = page.locator(
+      "#login-address > div.checkout-step-form.login-address-form > div.step-content > div > form > div > div > button"
+    )
+    await expect(shipment).toBeVisible()
+    await shipment.click()
+    await page.waitForTimeout(5000)
+    await expect(page).toHaveScreenshot(
+      {
+        fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
+      }
+
+    );
+    await page
+      .locator(
+        "#html-body > div.page-wrapper > div.header-wrapper.header-container-checkout > header > div > div > a > span.cart-label"
+      )
+      .click()
+    await page.waitForTimeout(1000)
+
+    await page
+      .locator(
+        'a.action.action-delete'
+      )
+      .click()
+    await page
+      .locator(
+        '#html-body > div.modals-wrapper > aside.modal-custom.delete-product.cart-remove-product.modal-sm.modal-confirm.modal--slide-up-m.modal--anchor-down-m.modal-slide._inner-scroll._show > div.modal-inner-wrap > footer > button.action.primary.delete-cart'
+      )
+      .click()
+  });
+});
+
+
+// verify UI product page single earing
+urls.forEach(url => {
+  test("product page single earing: " + url, async ({ playwright }) => {
+    const browser = await playwright.chromium.launch({
+      args: ['--remote-debugging-port=9222'],
+    })
+    const context = await browser.newContext();
+    const page = await context.newPage()
+    await page.goto(url);
+    //accept all cookies and geoip
+    await page.evaluate(() => window.scrollTo(0, 900))
     await page.waitForTimeout(5000)
     const language = page.locator(
       "#geoip-detect > div.geoip-detect-right > div > div.geoip-wrapper-content > a.btn-stay-here.geoip-close"
@@ -415,69 +574,57 @@ urls.forEach(url => {
     if (await cookies.isVisible()) {
       await cookies.click()
     }
+    await page.waitForTimeout(10000)
+    await page.goto(url + "glamira-men-earring-kmetov.html")
+    await page.waitForTimeout(5000)
+    // visually comparing two screenshots
+    await expect(page).toHaveScreenshot(
+      {
+        fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
+      }
 
-    await page.click("//a[@title='Log In/Sign Up']");
-    await expect(page).toHaveScreenshot(
-      {
-        fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
-      }
     );
-    //login
-    const email = page.locator("#login-email")
-    await expect(email).toBeVisible()
-    await email.fill("linh@onlinebizsoft.com")
-    await page.locator("#login-password").fill("Linh@123")
-    await page
-      .locator(
-        "//*[@id='customer_form_login_form_ajax']//button[@type='submit']"
-      )
-      .click()
-    //add to cart
-    await page.goto(url + 'glamira-bracelet-tanel.html?alloy=white_red-375&stone1=diamond-Brillant');
-    //compare visual: product page
-    await expect(page).toHaveScreenshot(
-      {
-        fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
-      }
-    );
-    //compare visual: stickey page
-    await page.evaluate(() => window.scrollTo(0, 300))
-    await expect(page).toHaveScreenshot(
-      {
-        fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
-      }
-    );
-    //shopping cart
-    await page.locator("#product-addtocart-button").click()
-    await page.waitForTimeout(1000)
-    await page
-      .locator(
-        "a.action.showcart"
-      )
-      .click()
-    await page
-      .locator(
-        "//a[@class='action primary large full-w viewcart']"
-      )
-      .click()
-    await expect(page).toHaveScreenshot(
-      {
-        fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
-      }
-    );
-    //checkout page
+    await page.close();
+    await context.close();
+    await browser.close();
+  });
+});
+
+urls.forEach(url => {
+  test("product page bridal set: " + url, async ({ playwright }) => {
+    const browser = await playwright.chromium.launch({
+      args: ['--remote-debugging-port=9222'],
+    })
+    const context = await browser.newContext();
+    const page = await context.newPage()
+    await page.goto(url);
+    //accept all cookies and geoip
+    await page.evaluate(() => window.scrollTo(0, 900))
     await page.waitForTimeout(5000)
-    const checkout = page.locator(
-      "#maincontent > div.columns > div > div.cart-container > div > ul > li > button"
+    const language = page.locator(
+      "#geoip-detect > div.geoip-detect-right > div > div.geoip-wrapper-content > a.btn-stay-here.geoip-close"
     )
-    await expect(checkout).toBeVisible()
-    await checkout.click()
+    if (await language.isVisible()) {
+      await expect(language).toBeVisible()
+      await language.click()
+    }
+    const cookies = page.locator('#html-body > aside > div > div > div > button.amgdprcookie-button.-allow.-save')
+    if (await cookies.isVisible()) {
+      await cookies.click()
+    }
+    await page.waitForTimeout(10000)
+    await page.goto(url + "glamira-bridal-set-gemmiferous.html")
     await page.waitForTimeout(5000)
+    // visually comparing two screenshots
     await expect(page).toHaveScreenshot(
       {
         fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
       }
+
     );
+    await page.close();
+    await context.close();
+    await browser.close();
   });
 });
 

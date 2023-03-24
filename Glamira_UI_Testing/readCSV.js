@@ -97,7 +97,7 @@ const existingCsv = [];
 //   "ring-paare",
 // ]
 
-const directoryPath = './home';
+const directoryPath = './lighthous-report-desktop/homepage';
 
 //stores.forEach((store) => {
   
