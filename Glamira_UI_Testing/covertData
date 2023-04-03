@@ -1,0 +1,51 @@
+const fs = require('fs');
+const csv = require('csv-parser');
+
+const directoryPath = './lighthous-report-desktop/homepage/';
+
+// Read all JSON files in directory
+fs.readdir(directoryPath, (err, files) => {
+  if (err) throw err;
+
+  // Loop over each file
+  files.forEach(file => {
+    if (file.endsWith('.json')) {
+      const jsonFilePath = directoryPath + file;
+      const csvFilePath = directoryPath + file.replace('.json', '.csv');
+
+      // Read JSON data from file
+      const jsonData = JSON.parse(fs.readFileSync(jsonFilePath));
+
+      // Extract server response time
+      const serverResponseTime = jsonData['audits']['server-response-time'];
+      const numericValue = serverResponseTime.numericValue;
+
+      // Read CSV data from file
+      const results = [];
+      fs.createReadStream(csvFilePath)
+        .pipe(csv())
+        .on('data', (data) => results.push(data))
+        .on('end', () => {
+          // Update score for server response time
+          const updatedResults = results.map((result) => {
+            if (result.name === 'server-response-time') {
+              result.score = numericValue;
+            }
+            return result;
+          });
+
+          // Convert data back to CSV format
+          const header = Object.keys(updatedResults[0]).join(',');
+          const updatedCsvData = updatedResults.map((result) => {
+            return Object.values(result).join(',');
+          }).join('\n');
+          
+          // Write updated data back to CSV file
+          fs.writeFile(csvFilePath, `${header}\n${updatedCsvData}`, (err) => {
+            if (err) throw err;
+            console.log(`${csvFilePath} updated successfully!`);
+          });
+        });
+    }
+  });
+});

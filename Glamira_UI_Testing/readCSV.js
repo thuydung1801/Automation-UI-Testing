@@ -124,7 +124,7 @@ fs.readdir(directoryPath, (err, files) => {
 
       })
       .on('end', () => {
-        existingCsv.unshift(moment().format('MM/DD/YYYY HH:mm:ss'));
+        existingCsv.unshift(moment().format('YYMMDDMM/DD/YYYY HH:mm:ss'));
         fs.appendFile(outputFilename, `${existingCsv.join(',')}\n`, function (err) {
           if (err) {
             console.error('Error writing to output file:', err);

@@ -91,7 +91,8 @@ const urls = [
   //"https://www.glamira.sr/",
   //"https://www.glamira.vn/",
   // "https://www.ring-paare.de/",
-  "https://stage.glamira.co.uk/"
+  "https://stage.glamira.co.uk/",
+  //"https://dev3.glamira.com/glgb/"
 ];
 
 urls.forEach(url => {
@@ -119,7 +120,7 @@ urls.forEach(url => {
     })
     const context = await browser.newContext();
     const page = await context.newPage(
-    
+
     );
 
     await page.goto(url + 'catalog/product/view/id/98249');
@@ -333,18 +334,6 @@ urls.forEach(url => {
     const page = await context.newPage()
     await page.goto(url);
     await page.waitForTimeout(5000)
-    await page.evaluate(() => window.scrollTo(0, 300))
-    const language = page.locator(
-      "#geoip-detect > div.geoip-detect-right > div > div.geoip-wrapper-content > a.btn-stay-here.geoip-close"
-    )
-    if (await language.isVisible()) {
-      await expect(language).toBeVisible()
-      await language.click()
-    }
-    const cookies = page.locator('#html-body > aside > div > div > div > button.amgdprcookie-button.-allow.-save')
-    if (await cookies.isVisible()) {
-      await cookies.click()
-    }
     await page.goto(url + 'glamira-initials-ring-a.html?alloy=white-silber&stone1=diamond-Brillant');
     await page.waitForTimeout(2000);
 
@@ -356,6 +345,17 @@ urls.forEach(url => {
     );
     await page.click("xpath=(//div[@id='product-options-wrapper']/div/div//div/span[@class='option_label_title'])[1]")
     await page.waitForTimeout(5000)
+    const language = page.locator(
+      "#geoip-detect > div.geoip-detect-right > div > div.geoip-wrapper-content > a.btn-stay-here.geoip-close"
+    )
+    if (await language.isVisible()) {
+      await expect(language).toBeVisible()
+      await language.click()
+    }
+    const cookies = page.locator('#html-body > aside > div > div > div > button.amgdprcookie-button.-allow.-save')
+    if (await cookies.isVisible()) {
+      await cookies.click()
+    }
     // visually comparing two screenshots
     await expect(page).toHaveScreenshot(
       {
@@ -381,6 +381,7 @@ test("price", async ({ page }) => {
   );
 });
 
+//landing rings home
 urls.forEach(url => {
   test("landing rings home: " + url, async ({ playwright }) => {
     const browser = await playwright.chromium.launch({
@@ -406,7 +407,7 @@ urls.forEach(url => {
   });
 });
 
-//main menu_node_33438__link
+//landing wedding
 urls.forEach(url => {
   test("landing wedding: " + url, async ({ playwright }) => {
     const browser = await playwright.chromium.launch({
@@ -431,7 +432,7 @@ urls.forEach(url => {
 });
 
 
-
+//checkout
 urls.forEach(url => {
   test("checkout " + url, async ({ playwright }) => {
     const browser = await playwright.chromium.launch({
@@ -503,7 +504,7 @@ urls.forEach(url => {
     );
     const username = page.locator("#checkout-login-email")
     await expect(username).toBeVisible()
-    await username.fill("linh@onlinebizsoft.com")
+    await username.fill("linh+1@onlinebizsoft.com")
     await page.locator("#checkout-login-password").fill("Linh@123")
     await page
       .locator(
@@ -523,7 +524,7 @@ urls.forEach(url => {
     )
     await expect(shipment).toBeVisible()
     await shipment.click()
-    await page.waitForTimeout(5000)
+    await page.waitForTimeout(10000)
     await expect(page).toHaveScreenshot(
       {
         fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
@@ -619,6 +620,184 @@ urls.forEach(url => {
     await expect(page).toHaveScreenshot(
       {
         fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
+      }
+
+    );
+    await page.close();
+    await context.close();
+    await browser.close();
+  });
+});
+
+urls.forEach(url => {
+  test("product page apple case: " + url, async ({ playwright }) => {
+    const browser = await playwright.chromium.launch({
+      args: ['--remote-debugging-port=9222'],
+    })
+    const context = await browser.newContext();
+    const page = await context.newPage()
+    await page.goto(url);
+    //accept all cookies and geoip
+    await page.evaluate(() => window.scrollTo(0, 900))
+    await page.waitForTimeout(5000)
+    const language = page.locator(
+      "#geoip-detect > div.geoip-detect-right > div > div.geoip-wrapper-content > a.btn-stay-here.geoip-close"
+    )
+    if (await language.isVisible()) {
+      await expect(language).toBeVisible()
+      await language.click()
+    }
+    const cookies = page.locator('#html-body > aside > div > div > div > button.amgdprcookie-button.-allow.-save')
+    if (await cookies.isVisible()) {
+      await cookies.click()
+    }
+    await page.waitForTimeout(10000)
+    await page.goto(url + "glamira-apple-watch-case-psara.html")
+    await page.waitForTimeout(5000)
+    // visually comparing two screenshots
+    await expect(page).toHaveScreenshot(
+      {
+        fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
+      }
+
+    );
+    await page.close();
+    await context.close();
+    await browser.close();
+  });
+});
+
+//image product
+urls.forEach(url => {
+  test("product page image pendant: " + url, async ({ playwright }) => {
+    const browser = await playwright.chromium.launch({
+      args: ['--remote-debugging-port=9222'],
+    })
+    const context = await browser.newContext();
+    const page = await context.newPage()
+    await page.goto(url);
+    //accept all cookies and geoip
+    await page.evaluate(() => window.scrollTo(0, 900))
+    await page.waitForTimeout(5000)
+    const language = page.locator(
+      "#geoip-detect > div.geoip-detect-right > div > div.geoip-wrapper-content > a.btn-stay-here.geoip-close"
+    )
+    if (await language.isVisible()) {
+      await expect(language).toBeVisible()
+      await language.click()
+    }
+    const cookies = page.locator('#html-body > aside > div > div > div > button.amgdprcookie-button.-allow.-save')
+    if (await cookies.isVisible()) {
+      await cookies.click()
+    }
+    await page.waitForTimeout(10000)
+    await page.goto(url + "glamira-pendant-tate.html?accent=black&alloy=white-375&stone1=diamond-Brillant")
+    await page.waitForTimeout(5000)
+    // visually comparing two screenshots
+    await expect(page).toHaveScreenshot(
+      {
+        fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
+      }
+
+    );
+    await page.close();
+    await context.close();
+    await browser.close();
+  });
+});
+
+//return form
+urls.forEach(url => {
+  test("return form: " + url, async ({ playwright }) => {
+    const browser = await playwright.chromium.launch({
+      args: ['--remote-debugging-port=9222'],
+    })
+    const context = await browser.newContext();
+    const page = await context.newPage()
+    await page.goto(url);
+    //accept all cookies and geoip
+    await page.evaluate(() => window.scrollTo(0, 900))
+    await page.waitForTimeout(5000)
+    const language = page.locator(
+      "#geoip-detect > div.geoip-detect-right > div > div.geoip-wrapper-content > a.btn-stay-here.geoip-close"
+    )
+    if (await language.isVisible()) {
+      await expect(language).toBeVisible()
+      await language.click()
+    }
+    const cookies = page.locator('#html-body > aside > div > div > div > button.amgdprcookie-button.-allow.-save')
+    if (await cookies.isVisible()) {
+      await cookies.click()
+    }
+    await page.waitForTimeout(10000)
+    await page.goto(url + "return/")
+    await page.waitForTimeout(5000)
+    // visually comparing two screenshots
+    await expect(page).toHaveScreenshot(
+      {
+        fullPage: true, timeout: 50000, maxDiffPixelRatio: 0.2
+      }
+
+    );
+    await page.close();
+    await context.close();
+    await browser.close();
+  });
+});
+
+//login
+urls.forEach(url => {
+  test("login forgot and create account: " + url, async ({ playwright }) => {
+    const browser = await playwright.chromium.launch({
+      args: ['--remote-debugging-port=9222'],
+    })
+    const context = await browser.newContext();
+    const page = await context.newPage()
+    await page.goto(url);
+    //accept all cookies and geoip
+    await page.evaluate(() => window.scrollTo(0, 900))
+    await page.waitForTimeout(5000)
+    const language = page.locator(
+      "#geoip-detect > div.geoip-detect-right > div > div.geoip-wrapper-content > a.btn-stay-here.geoip-close"
+    )
+    if (await language.isVisible()) {
+      await expect(language).toBeVisible()
+      await language.click()
+    }
+    const cookies = page.locator('#html-body > aside > div > div > div > button.amgdprcookie-button.-allow.-save')
+    if (await cookies.isVisible()) {
+      await cookies.click()
+    }
+    await page.waitForTimeout(5000)
+    await page.locator("(//li[@class='authorization-link login'])[1]/a").click();
+    await page.waitForTimeout(5000)
+    // visually comparing two screenshots
+    await expect(page).toHaveScreenshot(
+      {
+        timeout: 50000, maxDiffPixelRatio: 0.2
+      }
+
+    );
+
+
+    await page.locator("#customer_form_login_form_ajax > form > div.fieldset.text-right > a").click();
+    await expect(page).toHaveScreenshot(
+      {
+        timeout: 50000, maxDiffPixelRatio: 0.2
+      }
+
+    );
+
+
+    await page.reload();
+    await page.waitForLoadState('networkidle');
+    await page.locator("(//li[@class='authorization-link login'])[1]/a").click();
+    await page.locator(
+      "#customer_form_login_form_ajax > div.footer-additional-information > div > a"
+    ).click();
+    await expect(page).toHaveScreenshot(
+      {
+        timeout: 50000, maxDiffPixelRatio: 0.2
       }
 
     );

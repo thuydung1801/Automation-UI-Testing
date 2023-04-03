@@ -49,6 +49,7 @@ module.exports = defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'],
+      channel: 'chrome',
       launchOptions:{
         args: ["--start-fullscreen"]
       },
@@ -57,7 +58,21 @@ module.exports = defineConfig({
         height: 1080
       }
      },
+     
       
+    },
+    {
+      name: 'Mobile Safari',
+      use: {
+        ...devices['iPhone 13'],
+      },
+    },
+
+    {
+      name: 'Tablet Safari',
+      use: {
+        ...devices['iPad Pro landscape'],
+      },
     },
 
     {
