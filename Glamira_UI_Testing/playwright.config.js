@@ -14,7 +14,8 @@ const baseURL = "https://stage.glamira.co.uk/"
 module.exports = defineConfig({
   testDir: './tests',
   /* Maximum time one test can run for. */
-  timeout: 300 * 1000,
+  globalTimeout: 60*60*1000,
+  timeout: 300000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
